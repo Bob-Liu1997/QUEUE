@@ -1,7 +1,9 @@
 package queue
 
-import "errors"
-
+import (
+	"errors"
+	"fmt"
+)
 
 // state represents the state of Queue, Client, Topic
 const (
@@ -59,3 +61,11 @@ var ErrWaitTimeOut = errors.New("wait time out")
 var ErrWrongState = errors.New("wrong state")
 
 var ErrPublishTimeOut = errors.New("publish time out")
+
+func ErrTopicExisted(topic string) error{
+	return fmt.Errorf("topic [%s] has been registered", topic)
+}
+
+func ErrTopicNotFound(topic string) error {
+	return fmt.Errorf("topic [%s] is not found in queue", topic)
+}
